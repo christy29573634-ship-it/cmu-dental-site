@@ -1,0 +1,23 @@
+# Asks Cloudflare Pages to rebuild the site every day, so new activities
+# entered in the Apps Script admin show up without anyone pushing code.
+# Needs a repository secret named CF_DEPLOY_HOOK (a Cloudflare Pages deploy hook URL).
+name: Daily rebuild
+
+on:
+  schedule:
+    - cron: "17 19 * * *" # 03:17 Taiwan time
+  workflow_dispatch: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy hook
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "CF_DEPLOY_HOOK is not set; skipping."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"

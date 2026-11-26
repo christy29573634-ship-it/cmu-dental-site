@@ -1,0 +1,12 @@
+{
+  "name": "cmu-dental-site",
+  "private": true,
+  "type": "module",
+  "description": "中國醫藥大學牙醫系校友會醫療團公益義診網站（靜態網站產生器）",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
