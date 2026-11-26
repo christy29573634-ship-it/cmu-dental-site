@@ -1,0 +1,10 @@
+// Cloudflare Workers config: serves the files that build.mjs writes to ./dist.
+// "name" must match the project name in the Cloudflare dashboard.
+{
+  "name": "cmu-dental-alumni",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

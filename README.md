@@ -18,11 +18,15 @@
 
 也可以在 Cloudflare Pages 的「環境變數」設定 `SITE_URL`、`FEED_URL`、`GOOGLE_SITE_VERIFICATION`，會優先使用。
 
-## Cloudflare Pages 設定
+## Cloudflare 設定
 
-- Framework preset：None
+目前用 Cloudflare **Workers**（靜態檔案）部署，設定在 `wrangler.jsonc`：
+
+- Project name：`cmu-dental-alumni`（要和 `wrangler.jsonc` 的 `name` 一樣）
 - Build command：`node build.mjs`
-- Build output directory：`dist`
+- Deploy command：`npx wrangler deploy`
+
+若改用 Cloudflare Pages：Framework preset 選 None、Build command `node build.mjs`、Build output directory `dist`。
 
 要讓每天自動重建：Cloudflare Pages 專案 → Settings → Builds → Deploy hooks 建立一個 hook，
 把網址存到 GitHub 倉庫的 Settings → Secrets and variables → Actions，名稱 `CF_DEPLOY_HOOK`。
